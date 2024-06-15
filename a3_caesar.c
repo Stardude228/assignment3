@@ -31,7 +31,7 @@ int main() {
 
     // A while loop that ends when meets 0
     while (1) {
-        printf("Enter message to be encrypted (enter '0' to stop): ");
+        printf("Enter message to be encrypted: ");
         
         // Reading the message from user input
         if (fgets(message, sizeof(message), stdin)) {
