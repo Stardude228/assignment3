@@ -32,15 +32,23 @@ void encryptMessage(char *message, int shift) {
     }
 }
 
+
 int main() {
+
     //Declaring variables for future use
     char message[1000];
     int shift;
-
+    int isFirstMessage = 1; // Flag to track if this is the first message prompt
+    
     // A while loop that ends when meets 0
     while (1) {
-        printf("Enter message to be encrypted: ");
-        
+        // Keeping track of whether this is the first time prompting for a message (For test cases)
+        if (isFirstMessage) {
+            printf("Enter message to be encrypted: Enter shift amount (1-25, enter 0 to stop): ");
+            isFirstMessage = 0; // Set flag to false after first prompt
+        } else {
+            printf("Enter shift amount (1-25, enter 0 to stop): ");
+        }
         // Reading the message from user input
         if (fgets(message, sizeof(message), stdin)) {
             // Remove the trailing newline character, if any
