@@ -1,3 +1,12 @@
+/*************************************/
+    /* Name: Oomat Latipov */
+    /* NetID: U13921223 */
+    /* Program Description: This program */
+    /* reads a series of numbers  */
+    /* between 0 and 200 inclusive, 
+    /* displaing distinct numbers. */
+/*************************************/
+
 #include <stdio.h>
 #define N 100
 

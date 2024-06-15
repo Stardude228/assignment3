@@ -1,7 +1,15 @@
+/*************************************/
+    /* Name: Oomat Latipov */
+    /* NetID: U13921223 */
+    /* Program Description: This program */
+    /* encrypts a message using a Caesar cipher */
+/*************************************/
+
 #include <stdio.h>
 
-// Function to encrypt a message using a Caesar cipher
-// Not mine (Looked it up online but understood everything)
+// The encryptMessage is not mine. 
+// (Looked it up online but understood everything)
+
 void encryptMessage(char *message, int shift) {
     
     // Declaring variables for iterations
@@ -35,7 +43,7 @@ int main() {
         
         // Reading the message from user input
         if (fgets(message, sizeof(message), stdin)) {
-            // Removing the trailing newline character, if any
+            // Remove the trailing newline character, if any
             int i = 0;
             while (message[i] != '\0') {
                 if (message[i] == '\n') {
