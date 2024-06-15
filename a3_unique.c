@@ -1,27 +1,27 @@
 #include <stdio.h>
-
+#define N 100
 
 int main() {
-    int numbers[100];
+    int numbers[N];
     int count = 0;
-    int n, num;
+    int use_n, num;
     char ch;
 
     while (1) {
         // Prompt the user to enter the number of integers
         printf("Enter the number of input integers (0 to stop): ");
-        int user_input = scanf("%d", &n);
+        int user_input = scanf("%d", &use_n);
 
         // Checking if the iput is valid
-        if (user_input != 1 || n < 0) {
+        if (user_input != 1 || use_n < 0) {
             printf("Invalid number \n");
-            int user_char = (ch = getchar());
+            int user_char = (ch = getchar()); 
             while (user_char != '\n' && ch != EOF);
             continue;
         }
 
         // Stopping the function if the input is 0
-        if (n == 0) {
+        if (use_n == 0) {
             break;
         }
         
@@ -33,7 +33,7 @@ int main() {
         int num_read = 0;
 
         // A while loop for inserting the numbers
-        while (num_read < n) {
+        while (num_read < use_n) {
 
             // Handling and clearing invalid iput
             int scanned = scanf("%d", &num);
