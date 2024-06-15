@@ -44,11 +44,32 @@ int main() {
     while (1) {
         // Keeping track of whether this is the first time prompting for a message (For test cases)
         if (isFirstMessage) {
-            printf("Enter message to be encrypted: Enter shift amount (1-25, enter 0 to stop): ");
+            printf("Enter message to be encrypted: ");
             isFirstMessage = 0; // Set flag to false after first prompt
         } else {
             printf("Enter shift amount (1-25, enter 0 to stop): ");
+            // Read the shift amount from user input
+            scanf("%d", &shift);
+            getchar(); // Consume newline character left by scanf
+
+            // Check if user wants to stop
+            if (shift == 0) {
+                break;
+            } else if (shift < 0 || shift > 25) {
+                printf("Invalid shift amount. Please enter a number between 1 and 25.\n");
+                continue;
+            }
+
+            // Encrypt the message
+            encryptMessage(message, shift);
+
+            // Output the encrypted message
+            printf("Encrypted message: %s\n", message);
+
+            // Prompt for the next message
+            printf("Enter message to be encrypted: ");
         }
+        
         // Reading the message from user input
         if (fgets(message, sizeof(message), stdin)) {
             // Remove the trailing newline character, if any
