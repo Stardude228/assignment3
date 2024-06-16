@@ -27,7 +27,7 @@ int main() {
         if (scanf("%d", &use_n) != 1 || use_n < 0) {
             printf("Invalid number\n");
             // Clearing the input buffer
-            while ((ch = getchar()) != '\n' && ch != EOF);
+            while ((ch = getchar()) != '\n');
             continue;
         }
 
@@ -52,7 +52,9 @@ int main() {
             // Handling and clearing invalid input
             if (scanf("%d", &num) != 1) {
                 printf("Invalid input detected and ignored.\n");
-                while ((ch = getchar()) != '\n' && ch != EOF);  // Clear input buffer
+            
+                // Clearing the input buffer
+                while ((ch = getchar()) != '\n');
                 continue;
             }
 
@@ -67,12 +69,13 @@ int main() {
                 numbers[num] = 1;
                 unique_numbers[unique_count++] = num;
             }
-            
+
+            // Incrementing num_read to ensure the correct reading
             num_read++;
         }
 
         // Clearing the remaining input buffer
-        while ((ch = getchar()) != '\n' && ch != EOF);
+        while ((ch = getchar()) != '\n');
 
         // Printing unique numbers
         printf("Unique numbers: ");
