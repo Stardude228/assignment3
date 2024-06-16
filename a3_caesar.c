@@ -9,7 +9,6 @@
 
 // The encryptMessage is not mine. 
 // (Looked it up online but understood everything)
-
 void encryptMessage(char *message, int shift) {
     
     // Declaring variables for iterations
@@ -33,50 +32,46 @@ void encryptMessage(char *message, int shift) {
 }
 
 int main() {
-    //Declaring variables for future use
     char message[1000];
     int shift;
+    int caseNumber = 1; // To track the case number for output
 
-    // A while loop that ends when meets 0
     while (1) {
+        printf("CASE #%d\n", caseNumber++);
         printf("Enter message to be encrypted: ");
-        
-        // Reading the message from user input
-        if (fgets(message, sizeof(message), stdin)) {
-            // Remove the trailing newline character, if any
-            int i = 0;
-            while (message[i] != '\0') {
-                if (message[i] == '\n') {
-                    message[i] = '\0';
-                    break;
-                }
-                i++;
+
+        if (!fgets(message, sizeof(message), stdin)) {
+            break; // Exit loop on input failure
+        }
+
+        // Remove the trailing newline character, if any
+        for (int i = 0; message[i] != '\0'; i++) {
+            if (message[i] == '\n') {
+                message[i] = '\0';
+                break;
             }
         }
 
-        // Checking if user wants to stop
         if (message[0] == '0' && message[1] == '\0') {
-            break;
+            break; // Exit loop on "0" input
         }
 
         printf("Enter shift amount (1-25, enter 0 to stop): ");
         scanf("%d", &shift);
-        // Removing newline character left by scanf
-        getchar();
+        getchar(); // Consume newline left by scanf
 
-        // Checking if user wants to stop
         if (shift == 0) {
-            break;
-        } else if (shift < 0 || shift > 25) {
+            break; // Exit loop on shift value "0"
+        } else if (shift < 1 || shift > 25) {
             printf("Invalid shift amount. Please enter a number between 1 and 25.\n");
-            continue;
+            continue; // Restart loop for invalid shift
         }
 
-        // Encrypt the message
         encryptMessage(message, shift);
 
-        // Output the encrypted message
+        // Output formatted according to expected CASE #6 output
         printf("Encrypted message: %s\n", message);
+        printf("===\n");
     }
 
     return 0;
