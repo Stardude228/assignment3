@@ -36,7 +36,7 @@ int main() {
     int shift;
     
     while (1) {
-        printf("Enter message to be encrypted (enter '0' to stop): ");
+        printf("Enter message to be encrypted: ");
         fgets(message, sizeof(message), stdin);
         
         // Remove the newline character from fgets input
@@ -51,7 +51,7 @@ int main() {
             break; // Exit loop on "0" input
         }
         
-        printf("Enter shift amount (1-25): ");
+        printf("Enter shift amount (1-25, enter 0 to stop): ");
         scanf("%d", &shift);
         getchar(); // Consume newline left by scanf
         
