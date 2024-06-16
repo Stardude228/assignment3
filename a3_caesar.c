@@ -32,7 +32,7 @@ void encryptMessage(char *message, int shift) {
 }
 
 int main() {
-    char message[1000];
+    char message[5000];
     int shift;
     int stop = 0; // Flag to control program termination
     
