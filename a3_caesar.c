@@ -34,8 +34,9 @@ void encryptMessage(char *message, int shift) {
 int main() {
     char message[1000];
     int shift;
+    int stop = 0; // Flag to control program termination
     
-    while (1) {
+    while (!stop) {
         printf("Enter message to be encrypted: ");
         fgets(message, sizeof(message), stdin);
         
@@ -47,26 +48,37 @@ int main() {
             }
         }
         
+        // Check if user wants to stop entering messages
         if (message[0] == '0' && message[1] == '\0') {
-            break; // Exit loop on "0" input
+            printf("Enter shift amount (1-25, enter 0 to stop): ");
+            scanf("%d", &shift);
+            getchar(); // Consume newline left by scanf
+            
+            if (shift == 0) {
+                stop = 1; // Exit the loop if both message and shift are "0"
+                continue;
+            } else if (shift < 1 || shift > 25) {
+                printf("Invalid shift amount. Please enter a number between 1 and 25.\n");
+                continue; // Restart loop for invalid shift
+            }
+        } else {
+            printf("Enter shift amount (1-25, enter 0 to stop): ");
+            scanf("%d", &shift);
+            getchar(); // Consume newline left by scanf
+            
+            if (shift == 0) {
+                break; // Exit loop on "0" shift amount input
+            } else if (shift < 1 || shift > 25) {
+                printf("Invalid shift amount. Please enter a number between 1 and 25.\n");
+                continue; // Restart loop for invalid shift
+            }
         }
         
-        printf("Enter shift amount (1-25, enter 0 to stop): ");
-        scanf("%d", &shift);
-        getchar(); // Consume newline left by scanf
-        
-        if (shift == 0) {
-            break; // Exit loop on shift value "0"
-        } else if (shift < 1 || shift > 25) {
-            printf("Invalid shift amount. Please enter a number between 1 and 25.\n");
-            continue; // Restart loop for invalid shift
+        // Encrypt the message if it's not "0"
+        if (message[0] != '0' || message[1] != '\0') {
+            encryptMessage(message, shift);
+            printf("Encrypted message: %s\n", message);
         }
-        
-        // Encrypt the message
-        encryptMessage(message, shift);
-        
-        // Output encrypted message
-        printf("Encrypted message: %s\n", message);
     }
     
     return 0;
