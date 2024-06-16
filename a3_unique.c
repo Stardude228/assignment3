@@ -37,7 +37,7 @@ int main() {
         }
         
         // Prompt for user to input the numbers
-        printf("Enter numbers (0 – 200):\n");
+        printf("Enter numbers (0 – 200): ");
 
         // Reset the arrays for each new session
         for (int i = 0; i < 201; i++) {
