@@ -37,7 +37,7 @@ int main() {
     int stop = 0; // Flag to control program termination
     
     while (!stop) {
-        printf("Enter message to be encrypted (enter '0' to stop): ");
+        printf("Enter message to be encrypted: ");
         fgets(message, sizeof(message), stdin);
         
         // Remove the newline character from fgets input
