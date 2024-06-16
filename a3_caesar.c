@@ -37,8 +37,7 @@ int main() {
     int caseNumber = 1; // To track the case number for output
 
     while (1) {
-        printf("CASE #%d\n", caseNumber++);
-        printf("Enter message to be encrypted: ");
+        printf("Enter message to be encrypted (enter '0' to stop): ");
 
         if (!fgets(message, sizeof(message), stdin)) {
             break; // Exit loop on input failure
@@ -56,20 +55,20 @@ int main() {
             break; // Exit loop on "0" input
         }
 
-        printf("Enter shift amount (1-25, enter 0 to stop): ");
+        printf("Enter shift amount (1-25): ");
         scanf("%d", &shift);
         getchar(); // Consume newline left by scanf
 
-        if (shift == 0) {
-            break; // Exit loop on shift value "0"
-        } else if (shift < 1 || shift > 25) {
+        if (shift < 1 || shift > 25) {
             printf("Invalid shift amount. Please enter a number between 1 and 25.\n");
             continue; // Restart loop for invalid shift
         }
 
+        // Encrypt the message
         encryptMessage(message, shift);
 
-        // Output formatted according to expected CASE #6 output
+        // Output formatted according to expected CASE #n output
+        printf("CASE #%d\n", caseNumber++);
         printf("Encrypted message: %s\n", message);
         printf("===\n");
     }
