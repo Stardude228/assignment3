@@ -34,44 +34,40 @@ void encryptMessage(char *message, int shift) {
 int main() {
     char message[1000];
     int shift;
-    int caseNumber = 1; // To track the case number for output
-
+    
     while (1) {
         printf("Enter message to be encrypted (enter '0' to stop): ");
-
-        if (!fgets(message, sizeof(message), stdin)) {
-            break; // Exit loop on input failure
-        }
-
-        // Remove the trailing newline character, if any
+        fgets(message, sizeof(message), stdin);
+        
+        // Remove the newline character from fgets input
         for (int i = 0; message[i] != '\0'; i++) {
             if (message[i] == '\n') {
                 message[i] = '\0';
                 break;
             }
         }
-
+        
         if (message[0] == '0' && message[1] == '\0') {
             break; // Exit loop on "0" input
         }
-
+        
         printf("Enter shift amount (1-25): ");
         scanf("%d", &shift);
         getchar(); // Consume newline left by scanf
-
-        if (shift < 1 || shift > 25) {
+        
+        if (shift == 0) {
+            break; // Exit loop on shift value "0"
+        } else if (shift < 1 || shift > 25) {
             printf("Invalid shift amount. Please enter a number between 1 and 25.\n");
             continue; // Restart loop for invalid shift
         }
-
+        
         // Encrypt the message
         encryptMessage(message, shift);
-
-        // Output formatted according to expected CASE #n output
-        printf("CASE #%d\n", caseNumber++);
+        
+        // Output encrypted message
         printf("Encrypted message: %s\n", message);
-        printf("===\n");
     }
-
+    
     return 0;
 }
