@@ -37,7 +37,7 @@ int main() {
     int stop = 0; // Flag to control program termination
     
     while (!stop) {
-        printf("Enter message to be encrypted: ");
+        printf("Enter message to be encrypted (enter '0' to stop): ");
         fgets(message, sizeof(message), stdin);
         
         // Remove the newline character from fgets input
@@ -50,35 +50,28 @@ int main() {
         
         // Check if user wants to stop entering messages
         if (message[0] == '0' && message[1] == '\0') {
-            printf("Enter shift amount (1-25, enter 0 to stop): ");
-            scanf("%d", &shift);
-            getchar(); // Consume newline left by scanf
-            
-            if (shift == 0) {
-                stop = 1; // Exit the loop if both message and shift are "0"
-                continue;
-            } else if (shift < 1 || shift > 25) {
-                printf("Invalid shift amount. Please enter a number between 1 and 25.\n");
-                continue; // Restart loop for invalid shift
-            }
-        } else {
-            printf("Enter shift amount (1-25, enter 0 to stop): ");
-            scanf("%d", &shift);
-            getchar(); // Consume newline left by scanf
-            
-            if (shift == 0) {
-                break; // Exit loop on "0" shift amount input
-            } else if (shift < 1 || shift > 25) {
-                printf("Invalid shift amount. Please enter a number between 1 and 25.\n");
-                continue; // Restart loop for invalid shift
-            }
+            stop = 1; // Set stop flag to exit loop after current iteration
+            continue;
         }
         
-        // Encrypt the message if it's not "0"
-        if (message[0] != '0' || message[1] != '\0') {
-            encryptMessage(message, shift);
-            printf("Encrypted message: %s\n", message);
+        printf("Enter shift amount (1-25, enter 0 to stop): ");
+        scanf("%d", &shift);
+        getchar(); // Consume newline left by scanf
+        
+        // Check if user wants to stop entering shift amounts
+        if (shift == 0) {
+            stop = 1; // Exit the loop
+            continue;
+        } else if (shift < 1 || shift > 25) {
+            printf("Invalid shift amount. Please enter a number between 1 and 25.\n");
+            continue; // Restart loop for invalid shift
         }
+        
+        // Encrypt the message
+        encryptMessage(message, shift);
+        
+        // Output encrypted message
+        printf("Encrypted message: %s\n", message);
     }
     
     return 0;
